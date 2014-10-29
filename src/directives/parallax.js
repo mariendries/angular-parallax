@@ -49,9 +49,12 @@ directive('duParallax',
         var element = $element[0];
         var currentProperties;
         var inited = false;
+        var scrollContainer = $attr.duContainer ? angular.element($attr.duContainer) : $document;
+
+        console.log(scrollContainer);
 
         var onScroll = function(){
-          var scrollY = $document.scrollTop();
+          var scrollY = scrollContainer.scrollTop();
           var rect = element.getBoundingClientRect();
           if(!inited) {
             inited = true;
@@ -104,10 +107,10 @@ directive('duParallax',
           }
         };
 
-        $document.on('scroll touchmove', onScroll).triggerHandler('scroll');
+        scrollContainer.on('scroll touchmove', onScroll).triggerHandler('scroll');
 
         $scope.$on('$destroy', function() {
-          $document.off('scroll touchmove', onScroll);
+          scrollContainer.off('scroll touchmove', onScroll);
         });
       }
     };
