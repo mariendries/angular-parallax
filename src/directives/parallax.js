@@ -50,8 +50,12 @@ directive('duParallax',
         var currentProperties;
         var inited = false;
         var scrollContainer = $attr.duContainer ? angular.element($attr.duContainer) : $document;
+        var stopcondition = !!$attr.duStopcondition;
 
-        console.log(scrollContainer);
+        if(stopcondition){
+        	return;
+        }
+
 
         var onScroll = function(){
           var scrollY = scrollContainer.scrollTop();
