@@ -71,7 +71,7 @@ directive('duParallax',
         var currentProperties;
         var inited = false;
         var scrollContainer = $attr.duContainer ? angular.element($attr.duContainer) : $document;
-        var prevent = !!$attr.duPrevent;
+        var prevent = $attr.duPrevent === 'true';
 
         if(prevent){
         	return;
